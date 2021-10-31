@@ -28,7 +28,11 @@ def post_list(request, tag_slug=None):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, 'blog/post/list.html', {'page': page, 'all_fucking_posts': posts,'tag': tag})
+    return render(request, 'blog/post/list.html', {
+        'page': page,
+        'all_fucking_posts': posts,
+        'tag': tag
+    })
 
 
 class PostListView(ListView):
@@ -98,8 +102,11 @@ def post_search(request):
 
     if form.is_valid():
         query = form.cleaned_data['query']
-        results = Post.objects.annotate(similarity=TrigramSimilarity('title', query))\
-            .filter(similarity__gt=0.3).order_by('-similarity')
+        search_vector = SearchVector('title', 'body')
+        search_query = SearchQuery(query)
+        results = Post.objects.annotate(search=search_vector,
+                                        rank=SearchRank(search_vector, search_query)) \
+            .filter(search=search_query).order_by('-rank')
 
     return render(request, 'blog/post/search.html', {
         'form': form,

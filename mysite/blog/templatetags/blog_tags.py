@@ -3,7 +3,10 @@ import markdown
 from django import template
 from django.db.models import Count
 from django.utils.safestring import mark_safe
+from taggit.models import Tag
 from ..models import Post
+from ..forms import SearchForm
+
 
 register = template.Library()
 
@@ -27,3 +30,13 @@ def get_most_commented_posts(count=5):
 @register.filter(name='markdown')
 def markdown_format(text):
     return mark_safe(markdown.markdown(text))
+
+
+@register.simple_tag
+def get_all_tags():
+    return Tag.objects.all()
+
+
+# @register.inclusion_tag('blog/empty.html')
+# def show_search_form():
+#     return mark_safe(SearchForm().as_p())
