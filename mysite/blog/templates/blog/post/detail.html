@@ -10,6 +10,8 @@
             <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'blog:post_list_by_tag' tag.slug %}">{{ tag.name }}</a>
             {% endfor %}
         </header>
+        <!-- Preview image figure-->
+        <figure class="mb-4"><img class="img-fluid rounded" src="{{ post.photo }}" alt="..." /></figure>
         <section class="mb-5">
             {{ post.body|markdown }}
         </section>

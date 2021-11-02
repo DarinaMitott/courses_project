@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = '%wpo=$3ov!wdoyick8s7ju2yxf(h240s7!iw1u-@q!wejx3c9%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'mycatblog.herokuapp.com']
 
 
 SITE_ID = 1
@@ -85,11 +86,18 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'blog',
+    #     'USER': 'blog',
+    #     'PASSWORD': '123'
+    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blog',
-        'USER': 'blog',
-        'PASSWORD': '123'
+        'HOST': 'ec2-18-202-1-222.eu-west-1.compute.amazonaws.com',
+        'NAME': 'd5qjp5tihnskgl',
+        'USER': 'hgtdibcyvdtdln',
+        'PASSWORD': os.environ['DB_PASS']
     }
 }
 
@@ -131,11 +139,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # from django.core.mail.backends.console import EmailBackend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pop.poplop.lop@mail.ru'
-# EMAIL_HOST_PASSWORD = '(1OyodapUYZ2'
-EMAIL_HOST_PASSWORD = 'Q5Wwv9r3DZzptHtsxRxt'
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
 EMAIL_USE_TLS = True
+
+django_heroku.settings(locals())

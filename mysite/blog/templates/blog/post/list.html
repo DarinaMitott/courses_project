@@ -20,8 +20,13 @@
                         {% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </p>
-                <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
-                {{ post.body|markdown|truncatewords:30 }}
+                <p class="date text-muted fst-italic">Published {{ post.publish }} by {{ post.author }}</p>
+                <div class="row">
+                    <div class="col-lg-2"><img class="img-fluid rounded" src="{{ post.photo }}" alt=""></div>
+                    <div class="col-lg-10">
+                        {{ post.body|markdown|truncatewords:30 }}
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}

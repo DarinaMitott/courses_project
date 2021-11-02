@@ -1,3 +1,44 @@
 .card-item {
     margin-bottom: 1em;
 }
+
+.cat-fact-btn {
+    position: fixed;
+    left: calc(100% - 7rem);
+    bottom: 3rem;
+}
+
+.cat-fact-btn > a > img {
+    width: 7rem;
+    height: 7rem;
+}
+
+.alert {
+    position: fixed;
+    top: 10px;
+    width: 80vw;
+}
+
+.alert-primary {
+    background-color: #cfe2ffed;
+}
+
+article > figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+article > figure > img {
+    max-height: 500px;
+    max-width: calc(66%);
+}
+
+.tags {
+    margin-bottom: 0;
+}
+
+.date {
+    margin-bottom: 0.5rem;
+    font-size: 12px;
+   }
