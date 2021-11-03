@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load blog_tags %}
 {% load crispy_forms_tags %}
+{% load social_share %}
 {% block title %}My Blog{% endblock %}
 {% block content %}
     <article>
@@ -18,7 +19,22 @@
         </section>
 
         <section class="mb-5">
-            <a href="{% url "blog:post_share" post.id %}">Share this post</a>
+            <div class="col-lg-4">
+                Share:
+                {% with post.get_absolute_url as share_url %}
+                    {% post_to_telegram_url "New My Cat blog post: {{post.title}}" post as tg_ctx %}
+                    {% post_to_facebook_url post as fb_ctx %}
+                    {% post_to_twitter_url "New My Cat blog post: {{post.title}}" post as twitter_ctx %}
+                    {% post_to_whatsapp_url post as whatsapp_ctx %}
+                    <span><a class="bi bi-envelope-fill" href="{% url "blog:post_share" post.id %}"></a></span>
+                    <span><a class="bi bi-telegram" href="{{ tg_ctx.telegram_url }}"></a></span>
+                    <span><a class="bi bi-facebook" href="{{ fb_ctx.facebook_url }}"></a></span>
+                    <span><a class="bi bi-twitter" href="{{ twitter_ctx.tweet_url }}"></a></span>
+                    <span><a class="bi bi-whatsapp" href="{{ whatsapp_ctx.whatsapp_url }}"></a></span>
+                {% endwith %}
+            </div>
+
+
         </section>
         <section class="mb-5">
         {% if similar_posts %}

@@ -1,6 +1,7 @@
 Django==2.1.5
 django_taggit==0.23.0
 django-crispy-forms==1.13.0
+django-social-share==2.2.1
 Markdown==2.6.11
 psycopg2==2.8.6
 django-heroku==0.3.1

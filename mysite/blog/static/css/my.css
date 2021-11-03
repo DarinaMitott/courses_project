@@ -41,4 +41,12 @@ article > figure > img {
 .date {
     margin-bottom: 0.5rem;
     font-size: 12px;
-   }
+}
+
+.bi {
+    color: gray;
+}
+
+.bi.bi-chevron-left, .bi.bi-chevron-right {
+    color: white;
+}
