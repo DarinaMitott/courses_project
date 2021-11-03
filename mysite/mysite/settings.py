@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'blog.apps.BlogConfig',
     'taggit',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -147,5 +148,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pop.poplop.lop@mail.ru'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
 EMAIL_USE_TLS = True
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 django_heroku.settings(locals())
