@@ -10,7 +10,7 @@
         <form action="." method="post">
         {{ form|crispy }}
         {% csrf_token %}
-        <input type="submit" value="Send e-mail">
+        <input class="btn btn-dark" type="submit" value="Send e-mail">
         </form>
     {% endif %}
 {% endblock %}

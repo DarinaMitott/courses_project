@@ -39,7 +39,7 @@
                 <form action="." method="post">
                     {{ comment_form|crispy }}
                     {% csrf_token %}
-                    <p><input type="submit" value="Add comment"></p>
+                    <p><input class="btn btn-dark" type="submit" value="Add comment"></p>
                 </form>
             {% endif %}
             {% with comments.count as total_comments %}
